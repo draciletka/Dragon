@@ -27,21 +27,29 @@ class Drak:
 
     def vypsat (self):
         # Spočítá zdraví a vypíše drakovy aktuální hodnoty.
-        if self.cistota < 0:
+        if self.cistota < 10:
             self.zdravi = self.zdravi - 1
-        if self.energie < 0:
+        if self.energie < 10:
             self.zdravi = self.zdravi - 1
-        if self.sytost < 0:
+        if self.sytost < 10:
             self.zdravi = self.zdravi - 1
-        print(f"\t{self.jmeno}\n\tenergie {self.energie}\n\tsytost {self.sytost}\n\tštestí {self.stesti}\n\tčistota {self.cistota}\n\tzdraví {self.zdravi}\n\treputace {self.reputace}\n\tvzdělání {self.vzdelani}")
+        
+        en = self.energie - 10
+        sy = self.sytost - 10
+        ste = self.stesti - 10
+        cis = self.cistota - 10
+        zdr = self.zdravi - 10
+        rep = self.reputace - 10
+        vzd = self.vzdelani - 10
+        print(f"\t{self.jmeno}\n\tenergie {en}\n\tsytost {sy}\n\tštestí {ste}\n\tčistota {cis}\n\tzdraví {zdr}\n\treputace {rep}\n\tvzdělání {vzd}")
 
     @property # vlastnost únava
     def unaveny (self):
-        return self.energie < 4 
+        return self.energie < 14 
 
     @property # vlastnost hlad   
     def hladovy (self):
-        return self.sytost < 4
+        return self.sytost < 14
 
     def jist (self):
         # Draka můžeme nakrmit. Dle druhu jídla se mu kromě hladu mohou změnit i jiné hodnoty.
@@ -185,7 +193,7 @@ class Drak:
 
     def akce (self):
         # Ovládací prvek celé hry. Ptá se hráče, co chce dělat, dokud je drak alespoň trochu zdravý.
-        while self.zdravi > 0:
+        while self.zdravi > 10:
             print(f"\nCo má {self.jmeno} dělat?\n\t1 - Uložit hru\n\t2 - Ukázat statistiky\n\t3 - Jíst\n\t4 - Spát\n\t5 - Hrát si\n\t6 - Učit se\n\t7 Pracovat\n\t8 Vykoupat se")
             akce = int(input())
             if akce == 1:
@@ -232,7 +240,7 @@ print("Hra, ve které se stanete majitelem dráčka. Dobře se o něj starejte, 
 hra = int(input())
 if hra == 1:
     print("Stáváte se majitelem roztomilého dráčátka.\nJak se bude jmenovat?")
-    drak = Drak(input(), 10, 5, 10, 10, 10, 5, 0)
+    drak = Drak(input(), 20, 15, 20, 20, 20, 15, 10)
 elif hra == 2:
     drak = Drak(hodnoty.jmeno, hodnoty.energie, hodnoty.sytost, hodnoty.stesti, hodnoty.cistota, hodnoty.zdravi, hodnoty.reputace, hodnoty.vzdelani)
 else:
